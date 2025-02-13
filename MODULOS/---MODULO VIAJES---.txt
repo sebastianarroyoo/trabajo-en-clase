@@ -1,0 +1,25 @@
+---MODULO: VIAJES---
+
+	---RELACIONES---
+
+	- Este modulo tiene relación con el modulo de conductor ya que -
+		
+		#Cada viaje tiene un conductor asignado que va de un punto A a un punto B
+		#El conductor sigue una ruta establecida para llegar al destino
+		#El conductor es el responsable directo de que el viaje se complete
+	
+	- Este modulo tiene relación con el modulo vehículo ya que -
+		
+		#Cada viaje tiene un vehículo asignado que lo realiza
+		#Cada vehículo realiza diferentes viajes
+		#Viaje por cada vehículo se identifica con la placa del mismo, la fecha y el lugar de partida y destino.
+	
+	- Este modulo se relaciona con el modulo de dinero o capital ya que -
+		
+		#Cada viaje representa para el cliente ciertos gastos 
+		#Cada viaje representa para el cliente ciertas ganancias
+
+
+---MODULOS RELACIONADOS: CONDUCTOR, VEHICULO, DINERO O CAPITAL---
+
+ 
