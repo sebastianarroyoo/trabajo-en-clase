@@ -50,9 +50,9 @@ select nombre as "Nombre Cliente", domicilio, ciudad, telefono from cliente wher
 
 -- like not like
 -- select camposAConsultar from nombreTabla condicion like valorConsultar;
-select * from cliente where nombre like "%a%" -- contiene a
-select * from cliente where nombre like "a%" -- empieza por a
-select * from cliente where nombre like "a%" -- finaliza en a
+select * from cliente where nombre like "%a%"; -- contiene a
+select * from cliente where nombre like "a%"; -- empieza por a
+select * from cliente where nombre like "a%"; -- finaliza en a
 
 -- Eliminadores
 truncate table cliente;
