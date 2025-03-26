@@ -1,4 +1,6 @@
 create database TiendaMascota;
+
+drop database TiendaMascota;
 /*Habilitar la base de datos*/
 use TiendaMascota;
 /*Creacion de tablas*/
@@ -49,7 +51,7 @@ references Cliente(cedulaCliente);
 alter table Mascota_Vacuna
 add constraint FKMV
 foreign key (idMascotaFK)
-references Mascota(idMascota );
+references Mascota(idMascota);
 
 alter table Mascota_Vacuna
 add constraint FKVM
@@ -61,7 +63,7 @@ references Vacuna(codigoVacuna);
 INSERT INTO Mascota VALUES (1, 'Firulais', 'Macho', 'Labrador', 1),(3, 'Luna', 'Hembra', 'Golden Retriever', 2),(4, 'Rocky', 'Macho', 'Pastor Alemán', 1),(5, 'Bella', 'Hembra', 'Poodle', 1);
 
 -- Insertar un cliente
-INSERT INTO Cliente VALUES (101, 'Carlos', 'Perez', 'Calle 123', 987654321, 1), ;
+INSERT INTO Cliente VALUES (101, 'Carlos', 'Perez', 'Calle 123', 987654321, 1),() ;
 
 -- Insertar un producto
 INSERT INTO Producto VALUES (201, 'Croquetas', 'Pedigree', 25.99, 101);
@@ -71,4 +73,83 @@ INSERT INTO Vacuna VALUES (301, 'RabiaPlus', 1, 'Rabia');
 
 -- Insertar una relación entre mascota y vacuna
 INSERT INTO Mascota_Vacuna VALUES (301, 1, 'Rabia');
+
+----------------------------------------------------------------------------------------------------------------------
+select m.*, nombreCliente from Mascota m left join cliente c on m.idMascota = c.idMascotaFK;
+select m.*, nombreCliente from Mascota m right join cliente c on m.idMascota = c.idMascotaFK;
+
+select m.*, c.nombreCliente, p.nombreProducto from Mascota m join cliente c on m.idMascota = idMascotaFK join producto p on p.cedulaClienteFK = c.cedulaCliente;
+
+-- Eliminacion
+delete from producto where codigoProducto = 11;
+describe producto;
+delete from producto
+
+-- Procedimiento almacenado
+
+DELIMITER //
+CREATE PROCEDURE InsertarMascota(in idMascota int,  nombreMascota varchar(15),
+ generoMascota varchar(15), cantidad int)
+begin 
+	insert into mascota (idMascota,nombreMascota,generoMascota,cantidad)
+    VALUES (idMascota,nombreMascota,generoMascota,cantidad);
+    END  //
+    DELIMITER ;
+    
+    call InsertarMascota ("6","Temu","Macho","200");
+    
+    DELIMITER //
+CREATE PROCEDURE ConsultarPrecio(out PRECIO float)
+BEGIN 
+select count(*) into precio from producto;
+    END  //
+    DELIMITER ;
+    
+CALL ConsultarPrecio(@resultado);
+select @resultado;
+-- crear un procedimiento para insertar registros en tabla débil
+-- otro procedimiento para consultar las vacunas que se le ha aplicado a una mascota y que enfermedad está atacando
+
+-- 1 
+DELIMITER //
+
+CREATE PROCEDURE InsertarVacunaMascota(
+    IN p_codigoVacuna INT,
+    IN p_idMascota INT,
+    IN p_enfermedad VARCHAR(15)
+)
+BEGIN
+    -- Insertar un registro en la tabla Mascota_Vacuna
+    INSERT INTO Mascota_Vacuna (codigoVacunaFK, idMascotaFK, enfermedad)
+    VALUES (p_codigoVacuna, p_idMascota, p_enfermedad);
+END //
+
+DELIMITER ;
+
+CALL InsertarVacunaMascota(301, 1, 'Rabia');
+
+-- 2 
+DELIMITER //
+
+CREATE PROCEDURE ConsultarVacunasMascota(
+    IN p_idMascota INT
+)
+BEGIN
+    -- Consultar las vacunas y las enfermedades para una mascota específica
+    SELECT 
+        m.nombreMascota,
+        v.nombreVacuna,
+        mv.enfermedad 
+    FROM 
+        Mascota_Vacuna mv
+    JOIN 
+        Vacuna v ON mv.codigoVacunaFK = v.codigoVacuna
+    JOIN 
+        Mascota m ON mv.idMascotaFK = m.idMascota
+    WHERE 
+        mv.idMascotaFK = p_idMascota;
+END //
+
+CALL ConsultarVacunasMascota(1);
+
 
