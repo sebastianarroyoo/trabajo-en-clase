@@ -63,7 +63,7 @@ references Vacuna(codigoVacuna);
 INSERT INTO Mascota VALUES (1, 'Firulais', 'Macho', 'Labrador', 1),(3, 'Luna', 'Hembra', 'Golden Retriever', 2),(4, 'Rocky', 'Macho', 'Pastor Alemán', 1),(5, 'Bella', 'Hembra', 'Poodle', 1);
 
 -- Insertar un cliente
-INSERT INTO Cliente VALUES (101, 'Carlos', 'Perez', 'Calle 123', 987654321, 1),() ;
+INSERT INTO Cliente VALUES (101, 'Carlos', 'Perez', 'Calle 123', 987654321, 1);
 
 -- Insertar un producto
 INSERT INTO Producto VALUES (201, 'Croquetas', 'Pedigree', 25.99, 101);
@@ -130,6 +130,7 @@ CALL InsertarVacunaMascota(301, 1, 'Rabia');
 
 -- 2 
 DELIMITER //
+drop procedure ConsultarVacunaMascota;
 
 CREATE PROCEDURE ConsultarVacunasMascota(
     IN p_idMascota INT
@@ -139,8 +140,8 @@ BEGIN
     SELECT 
         m.nombreMascota,
         v.nombreVacuna,
-        mv.enfermedad 
-    FROM 
+        mv.enfermedad
+    FROM
         Mascota_Vacuna mv
     JOIN 
         Vacuna v ON mv.codigoVacunaFK = v.codigoVacuna
@@ -150,6 +151,98 @@ BEGIN
         mv.idMascotaFK = p_idMascota;
 END //
 
+DELIMITER ;
+
 CALL ConsultarVacunasMascota(1);
+
+------------------------------------------------------------------------------------------------------------------------------
+
+-- Vistas o views
+-- es una consulta alacenada en la base de datosque genera una tabla virtual
+
+-- sintaxis: create view nombreVista as select valoresaConsultar from nombreTabla where condiciones 
+
+create view vistaCliente as
+select * from cliente where cedulaCliente = " ";
+
+select * from cliente;
+
+-- EJERCICIO 
+create view vistaTelefonoCliente as select * from cliente where telefonoCliente like "%3%" and telefonoCliente like "%4%" 
+and telefonoCliente like "%6%";
+
+-- modificar una vista
+
+-- alter view vistaTelefonoCliente as; -- sintaxis que quiero usar
+
+-------------------------------------------------------
+
+-- Disparadores o triggers
+-- tipos
+-- before insert, before update, before delete ----- Se ejecutan despues de la operacion
+-- after .... 
+-- SINTAXIS
+/*
+DELIMITER //
+CREATE TRIGGER nombreTrigger
+AFTER INSERT ON nombreTabla
+FOR EACH ROW
+BIGIN
+-- instrucciones sql;
+
+END //
+DELIMITER;
+*/
+ 
+ /* CREAR UN TRIGGER PARA REGISTRAR EN UNA TABLA CONSOLIDADO CADA VEZ QUE SE INSERTE UNA MASCOTA*/
+ 
+CREATE TABLE consolidado(
+idMascota int primary key,
+nombreMascota varchar (15),
+generoMascota varchar (15),
+razaMascota varchar (15),
+cantidad int (10)
+);
+
+DELIMITER //
+CREATE TRIGGER registrarConsolidadoMascota
+AFTER INSERT ON  mascota
+FOR EACH ROW
+BEGIN
+	INSERT INTO consolidado VALUES (NEW.nombreMascota,NEW.nombreMascota,new.generoMascota,new.razamascota,new.cantidad); 
+END //
+
+DELIMITER ;
+insert into mascota values(5555,"arroyo","F","bobo",1);
+select * from consolidado;
+
+create table clientesEliminados (
+cedulaCliente int primary key,
+nombreCliente varchar (15),
+apellidoCliente varchar (15),
+direccionCliente varchar (10),
+telefono int (10),
+idMascotaFK int
+);
+
+DELIMITER //
+CREATE TRIGGER registrarClientesEliminados
+AFTER DELETE ON  cliente
+FOR EACH ROW
+BEGIN
+	INSERT INTO clientesEliminados VALUES 
+    (old.cedulaCliente,old.nombreCliente,old.apellidoCliente,old.direccionCliente,old.telefono); 
+END //
+
+DELIMITER ;
+
+delete from cliente where nombreCliente= "Carlos";
+delete from mascota where idMascota = 1;
+
+select * from clientesEliminados;
+select * from cliente;
+describe cliente;
+
+SET SQL_SAFE_UPDATES = 0;
 
 
