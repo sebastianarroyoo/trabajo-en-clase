@@ -1,0 +1,168 @@
+show dbs
+admin   40.00 KiB
+config  60.00 KiB
+local   88.00 KiB
+use tienda
+switched to db tienda
+show dbs
+admin    40.00 KiB
+config  108.00 KiB
+local    88.00 KiB
+db
+tienda
+db.createCollection("prductos")
+{ ok: 1 }
+show collections
+prductos
+db.productos.insert({nombre:"laptop",precio:1200000,camtidad:10})
+DeprecationWarning: Collection.insert() is deprecated. Use insertOne, insertMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('680fce864cefba75667931cf')
+  }
+}
+db.productos.insertMany([{nombre:"Mouse",precio:60000,cantidad:15},{nombre:"teclados",precio:100000,cantidad:15},{nombre:"USB",precio:20000,cantidad:15}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('680fcfee4cefba75667931d0'),
+    '1': ObjectId('680fcfee4cefba75667931d1'),
+    '2': ObjectId('680fcfee4cefba75667931d2')
+  }
+}
+db.productos.find()
+{
+  _id: ObjectId('680fce864cefba75667931cf'),
+  nombre: 'laptop',
+  precio: 1200000,
+  camtidad: 10
+}
+{
+  _id: ObjectId('680fcfee4cefba75667931d0'),
+  nombre: 'Mouse',
+  precio: 60000,
+  cantidad: 15
+}
+{
+  _id: ObjectId('680fcfee4cefba75667931d1'),
+  nombre: 'teclados',
+  precio: 100000,
+  cantidad: 15
+}
+{
+  _id: ObjectId('680fcfee4cefba75667931d2'),
+  nombre: 'USB',
+  precio: 20000,
+  cantidad: 15
+}
+db.productos.find().pretty()
+{
+  _id: ObjectId('680fce864cefba75667931cf'),
+  nombre: 'laptop',
+  precio: 1200000,
+  camtidad: 10
+}
+{
+  _id: ObjectId('680fcfee4cefba75667931d0'),
+  nombre: 'Mouse',
+  precio: 60000,
+  cantidad: 15
+}
+{
+  _id: ObjectId('680fcfee4cefba75667931d1'),
+  nombre: 'teclados',
+  precio: 100000,
+  cantidad: 15
+}
+{
+  _id: ObjectId('680fcfee4cefba75667931d2'),
+  nombre: 'USB',
+  precio: 20000,
+  cantidad: 15
+}
+db.productos.find({precio:20000}).pretty()
+show dbs
+admin   40.00 KiB
+config  60.00 KiB
+local   88.00 KiB
+use tienda
+switched to db tienda
+show dbs
+admin    40.00 KiB
+config  108.00 KiB
+local    88.00 KiB
+db
+tienda
+db.createCollection("prductos")
+{ ok: 1 }
+show collections
+prductos
+db.productos.insert({nombre:"laptop",precio:1200000,camtidad:10})
+DeprecationWarning: Collection.insert() is deprecated. Use insertOne, insertMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('680fce864cefba75667931cf')
+  }
+}
+db.productos.insertMany([{nombre:"Mouse",precio:60000,cantidad:15},{nombre:"teclados",precio:100000,cantidad:15},{nombre:"USB",precio:20000,cantidad:15}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('680fcfee4cefba75667931d0'),
+    '1': ObjectId('680fcfee4cefba75667931d1'),
+    '2': ObjectId('680fcfee4cefba75667931d2')
+  }
+}
+db.productos.find()
+{
+  _id: ObjectId('680fce864cefba75667931cf'),
+  nombre: 'laptop',
+  precio: 1200000,
+  camtidad: 10
+}
+{
+  _id: ObjectId('680fcfee4cefba75667931d0'),
+  nombre: 'Mouse',
+  precio: 60000,
+  cantidad: 15
+}
+{
+  _id: ObjectId('680fcfee4cefba75667931d1'),
+  nombre: 'teclados',
+  precio: 100000,
+  cantidad: 15
+}
+{
+  _id: ObjectId('680fcfee4cefba75667931d2'),
+  nombre: 'USB',
+  precio: 20000,
+  cantidad: 15
+}
+db.productos.find().pretty()
+{
+  _id: ObjectId('680fce864cefba75667931cf'),
+  nombre: 'laptop',
+  precio: 1200000,
+  camtidad: 10
+}
+{
+  _id: ObjectId('680fcfee4cefba75667931d0'),
+  nombre: 'Mouse',
+  precio: 60000,
+  cantidad: 15
+}
+{
+  _id: ObjectId('680fcfee4cefba75667931d1'),
+  nombre: 'teclados',
+  precio: 100000,
+  cantidad: 15
+}
+{
+  _id: ObjectId('680fcfee4cefba75667931d2'),
+  nombre: 'USB',
+  precio: 20000,
+  cantidad: 15
+}
+db.productos.find({precio:20000}).pretty()
