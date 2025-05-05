@@ -1,0 +1,45 @@
+[{
+  "_id": {
+    "$oid": "681910948a07ab0f499aa845"
+  },
+  "nombre": "william",
+  "documento": "102038392",
+  "correo": "sisas.pana@example.com",
+  "edad": 18
+},
+{
+  "_id": {
+    "$oid": "681910e68a07ab0f499aa846"
+  },
+  "nombre": "juan",
+  "documento": "10394833",
+  "correo": "aaaaaaaaa@example.com",
+  "edad": 18
+},
+{
+  "_id": {
+    "$oid": "681910f78a07ab0f499aa847"
+  },
+  "nombre": "Juan Sebastian",
+  "documento": "91913431",
+  "correo": "juansebastian@example.com",
+  "edad": 92
+},
+{
+  "_id": {
+    "$oid": "681911158a07ab0f499aa848"
+  },
+  "nombre": "tatiana",
+  "documento": "10203234242",
+  "correo": "tatiana@example.com",
+  "edad": 25
+},
+{
+  "_id": {
+    "$oid": "6819112b8a07ab0f499aa849"
+  },
+  "nombre": "Sara Valentina",
+  "documento": "39319332",
+  "correo": "sasasasasasa@example.com",
+  "edad": 18
+}]

@@ -1,0 +1,32 @@
+[{
+  "_id": {
+    "$oid": "680fce864cefba75667931cf"
+  },
+  "nombre": "laptop",
+  "precio": 1200000,
+  "camtidad": 10
+},
+{
+  "_id": {
+    "$oid": "680fcfee4cefba75667931d0"
+  },
+  "nombre": "Mouse",
+  "precio": 60000,
+  "cantidad": 15
+},
+{
+  "_id": {
+    "$oid": "680fcfee4cefba75667931d1"
+  },
+  "nombre": "teclados",
+  "precio": 100000,
+  "cantidad": 15
+},
+{
+  "_id": {
+    "$oid": "680fcfee4cefba75667931d2"
+  },
+  "nombre": "USB",
+  "precio": 20000,
+  "cantidad": 15
+}]
