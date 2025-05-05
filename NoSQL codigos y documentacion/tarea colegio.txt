@@ -1,0 +1,7 @@
+db.estudiantes.insertMany([{id:1,nombre:"Isabella",genero:"f"},{id:2,nombre:"Sebastian",genero:"m"},{id:3,nombre:"Camila",genero:"f"},
+{id:4,nombre:"Paola",genero:"f"}])
+db.materias.insertMany([{id_m:1,nombre:"matematicas"},{id_m:2,nombre:"español"},{id_m:3,nombre:"biologia"},{id_m:4,nombre:"quimica"}])
+db.estudiantes.updateMany({id:{$in:[1,2]}},{$set:{curso:"3f"}})
+db.estudiantes.updateMany({id:{$in:[3,4]}},{$set:{curso:"3a"}})
+db.califcaciones.aggregate([{$lookup:{from:"estudiantes",localField:"id_est",foreignField:"id",as:"info estudiante"}},
+{$lookup:{from:"materias",localField:"id_mat",foreignField:"id_m",as:"info materia"}}])

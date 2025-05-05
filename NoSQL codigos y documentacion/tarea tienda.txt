@@ -1,0 +1,10 @@
+use tarea
+db.clientes.insertMany([{nombre:"Sara",documento:1141515962},{nombre:"William",documento:1073482072},{nombre:"Sebastian",documento:1145926466}])
+db.productos.insertMany([{id:1,nombre:"teclado",precio:100000},{id:2,nombre:"mouse",precio:30000},{id:3,nombre:"camara",precio:25000},{id:4,nombre:"mousepad",precio:80000},{id:5,nombre:"portatil",precio:2000000}])
+db.clientes.insertMany([{nombre:"Juan",documeto:123789428},{nombre:"David",documento:0}])
+db.ventas.insertMany([{id_producto:1,id_cliente:123789428},{id_producto:4,id_cliente:1141515962},{id_producto:2,id_cliente:1145926466}])
+db.ventas.aggregate([{$lookup:{from:"clientes",localField:"id_cliente",foreignField:"documento",as:"full info"}}])
+db.clientes.updateMany({documeto:{$exists:true}},{$unset: {documeto:""}})
+db.clientes.updateMany({_id:{$eq:ObjectId('6816ac8ca80eb5ef69c6bf5c')}},{$set:{documento:123789428}})
+db.ventas.aggregate([{$lookup:{from:"clientes",localField:"id_cliente",foreignField:"documento",as:"info cliente"}},
+{$lookup:{from:"productos",localField:"id_producto",foreignField:"id",as:"info productos"}}])
