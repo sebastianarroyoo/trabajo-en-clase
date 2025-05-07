@@ -1,0 +1,46 @@
+[
+  {
+    "_id": { "$oid": "680fd0004cefba75667931d3" },
+    "id": 1,
+    "nombre": "Isabella",
+    "genero": "f"
+  },
+  {
+    "_id": { "$oid": "680fd0004cefba75667931d4" },
+    "id": 2,
+    "nombre": "Sebastian",
+    "genero": "m"
+  },
+  {
+    "_id": { "$oid": "680fd0004cefba75667931d5" },
+    "id": 3,
+    "nombre": "Camila",
+    "genero": "f"
+  },
+  {
+    "_id": { "$oid": "680fd0004cefba75667931d6" },
+    "id": 4,
+    "nombre": "Paola",
+    "genero": "f"
+  },
+  {
+    "_id": { "$oid": "680fd0004cefba75667931d7" },
+    "id_m": 1,
+    "nombre": "matematicas"
+  },
+  {
+    "_id": { "$oid": "680fd0004cefba75667931d8" },
+    "id_m": 2,
+    "nombre": "español"
+  },
+  {
+    "_id": { "$oid": "680fd0004cefba75667931d9" },
+    "id_m": 3,
+    "nombre": "biologia"
+  },
+  {
+    "_id": { "$oid": "680fd0004cefba75667931da" },
+    "id_m": 4,
+    "nombre": "quimica"
+  }
+]
